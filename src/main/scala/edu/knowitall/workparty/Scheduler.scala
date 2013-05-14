@@ -28,7 +28,7 @@ object Scheduler extends App {
 
         config.copy(work = work.opt.getOrElse(throw new FileNotFoundException))
       },
-      arg("nodesFile", "file describing nodes") { (nodesFilePath, config) =>
+      arg("nodes", "file describing nodes") { (nodesFilePath, config) =>
         val file = new File(nodesFilePath)
         import resource._
 
@@ -42,7 +42,7 @@ object Scheduler extends App {
 
   argumentParser.parse(args, Config()) match {
     case Some(config) => run(config)
-    case None => argumentParser.showUsage
+    case None =>
   }
 
   def run(config: Config) = {
